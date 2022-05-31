@@ -1,17 +1,17 @@
 class Persons {
   final List<Person> persons;
   final int count;
+  final int totalResults;
 
-  Persons(this.persons, this.count);
+  Persons(this.persons, this.count, this.totalResults);
 
   factory Persons.fromJson(Map<String, dynamic> json) {
     List<Person> persons = [];
 
     for (Map<String, dynamic> person in json['data']['results']) {
-      persons.insert(0, Person.fromJson(person));
+      persons.add(Person.fromJson(person));
     }
-
-    return Persons(persons, json['data']['count']);
+    return Persons(persons, json['data']['count'], json['data']['total']);
   }
 }
 

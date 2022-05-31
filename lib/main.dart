@@ -31,7 +31,7 @@ class PersonListWidget extends StatefulWidget {
 }
 
 class _PersonListWidgetState extends State<PersonListWidget> {
-  Persons persons = Persons([], 0);
+  Persons persons = Persons([], 0, 0);
   final myController = TextEditingController();
 
   @override
@@ -47,8 +47,9 @@ class _PersonListWidgetState extends State<PersonListWidget> {
             padding: const EdgeInsets.all(16.0),
             child: TextField(
               controller: myController,
-              decoration: const InputDecoration(labelText: "Person (ex: Hulk)"),
-              onEditingComplete: () => _updateList(myController.text),
+              decoration: InputDecoration(
+                  labelText:
+                      "Character or Organization (results: ${persons.totalResults.toString()}, max: 100)"),
             ),
           ),
           Expanded(
@@ -59,6 +60,10 @@ class _PersonListWidgetState extends State<PersonListWidget> {
                     ))),
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => _updateList(myController.text),
+        child: const Icon(Icons.search),
       ),
     );
   }
