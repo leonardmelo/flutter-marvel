@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:marvel/model/persons.dart';
+import 'package:marvel/persons.dart';
 import 'package:marvel/consume_api.dart';
 
 Future main() async {
@@ -84,21 +84,7 @@ class PersonTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      onTap: () async {
-        showDialog(
-            context: context,
-            builder: (_) => Dialog(
-                  child: Container(
-                    width: 280,
-                    height: 420,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                      image: NetworkImage(
-                          "${person.thumbnail.path}/portrait_uncanny.${person.thumbnail.extension}"),
-                    )),
-                  ),
-                ));
-      },
+      onTap: () => showPicture(context, person),
       title: Text(person.name),
       subtitle: Row(
         children: [
@@ -128,4 +114,20 @@ class PersonTile extends StatelessWidget {
       ),
     );
   }
+}
+
+Future<Widget> showPicture(BuildContext context, Person person) async {
+  return await showDialog(
+      context: context,
+      builder: (_) => Dialog(
+            child: Container(
+              width: 280,
+              height: 420,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                image: NetworkImage(
+                    "${person.thumbnail.path}/portrait_uncanny.${person.thumbnail.extension}"),
+              )),
+            ),
+          ));
 }
