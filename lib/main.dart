@@ -114,16 +114,13 @@ class PersonTile extends StatelessWidget {
 
 Future<Widget> showPicture(BuildContext context, Person person) async {
   return await showDialog(
-      context: context,
-      builder: (_) => Dialog(
-            child: Container(
-              width: 280,
-              height: 420,
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                image: NetworkImage(
-                    "${person.thumbnail.path}/portrait_uncanny.${person.thumbnail.extension}"),
-              )),
-            ),
-          ));
+    context: context,
+    builder: (_) => Dialog(
+      child: Image(
+        fit: BoxFit.cover,
+        image: NetworkImage(
+            "${person.thumbnail.path}.${person.thumbnail.extension}"),
+      ),
+    ),
+  );
 }
