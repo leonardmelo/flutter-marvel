@@ -84,7 +84,9 @@ class PersonTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      onTap: () => showPicture(context, person),
+      onTap: () async {
+        showPicture(context, person);
+      },
       title: Text(person.name),
       subtitle: Row(
         children: [
@@ -116,8 +118,8 @@ class PersonTile extends StatelessWidget {
   }
 }
 
-Future<Widget> showPicture(BuildContext context, Person person) async {
-  return await showDialog(
+Future showPicture(BuildContext context, Person person) {
+  return showDialog(
     context: context,
     builder: (_) => Dialog(
       child: Image(
