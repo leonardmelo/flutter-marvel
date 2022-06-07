@@ -88,21 +88,17 @@ class PersonTile extends StatelessWidget {
       title: Text(person.name),
       subtitle: Row(
         children: [
-          Expanded(
-            child: Column(
-              children: [
-                Text("Comics: ${person.numberComics}"),
-                Text("Events: ${person.numberEvents}")
-              ],
-            ),
+          Column(
+            children: [
+              Text("Comics: ${person.numberComics}"),
+              Text("Events: ${person.numberEvents}")
+            ],
           ),
-          Expanded(
-            child: Column(
-              children: [
-                Text("Stories: ${person.numberStories}"),
-                Text("Series: ${person.numberSeries}")
-              ],
-            ),
+          Column(
+            children: [
+              Text("Stories: ${person.numberStories}"),
+              Text("Series: ${person.numberSeries}")
+            ],
           )
         ],
       ),
